@@ -17,14 +17,19 @@ os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 def send_email(receiver_email, filename):
     msg = EmailMessage()
     msg['Subject'] = 'Your Processed File'
-    msg['From'] = 'ashmitgarg104@gmail.com'   
+    msg['From'] = 'ashmitgarg104@gmail.com'
     msg['To'] = receiver_email
 
-    link = f"http://127.0.0.1:5000/download/{filename}"
+    # ✅ FIXED LINK (important for deployment)
+    link = request.host_url + "download/" + filename
     msg.set_content(f"Download your processed file:\n{link}")
 
+    # ✅ Environment variables
+    EMAIL = os.environ.get("EMAIL")
+    PASSWORD = os.environ.get("PASSWORD")
+
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('ashmitgarg104@gmail.com', 'kfdd llmj yroe dpdn')  
+        smtp.login(EMAIL, PASSWORD)
         smtp.send_message(msg)
 
 # ---------------- HOME ----------------
