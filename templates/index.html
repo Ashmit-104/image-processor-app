@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Media Processor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="file"] {
+            border: none;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .checkbox input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Media Processor</h2>
+
+    <form action="/process" method="post" enctype="multipart/form-data">
+
+        <input type="file" name="image" required>
+
+        <label>Resize (%)</label>
+        <input type="number" name="resize" value="100">
+
+        <div class="checkbox">
+            <input type="checkbox" name="bw">
+            <label>Convert to Black & White</label>
+        </div>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <button type="submit">Process</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
